@@ -1,0 +1,104 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2022-01-23T15:17:40.162Z",
+    "end": "2022-01-23T15:17:44.366Z",
+    "duration": 4204,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "cb8581de-fd45-420b-9479-f1baec24c142",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ed101e43-47ea-4bf7-a4f7-c670c0ac1539",
+          "title": "Test Suite - Login",
+          "fullFile": "D:\\Automation\\Unite_Puppeteer\\Login.js",
+          "file": "\\Login.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Testing the Mocha Reporting Feature",
+              "fullTitle": "Test Suite - Login Testing the Mocha Reporting Feature",
+              "timedOut": true,
+              "duration": 2053,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "//launching the headless browser\n     const browser = await puppeteer.launch({ headless: false , defaultViewport: null, args:['--start-maximized'] });\n     //Create instance of the browser\n    const page = await browser.newPage();\n    const recorder = new PuppeteerScreenRecorder(page,config);\n    const fs = require('fs');\n    function getDateString() {\nconst date = new Date();\nconst year = date.getFullYear();\nconst month = `${date.getMonth() + 1}`.padStart(2, '0');\nconst day =`${date.getDate()}`.padStart(2, '0');\nconst hours = `${date.getHours()}`.padStart(2, '0');\nconst mins = `${date.getMinutes()}`.padStart(2, '0');\nreturn `${year}${month}${day}_${hours}${mins}`;\n      }\n      await recorder.start(`Login/Login_${getDateString()}.mp4`);\n\n    await page.setViewport({width: 1200, height: 720})\n   //Navigate to the url\n    await page.goto('http://localhost:4200/', { waitUntil: 'networkidle2',timeout: 50000} );\n\n    await page.type('[type=email]', 'sage@assaycr.com')\n    await page.type('[type=password]', 'admin');\n\n    await page.click('[type=submit]');\n    await page.waitForNavigation();\n    console.log('Logged in Successfully');\n\n    const [selectRole] = await page.$('[placeholder=Select Role]');\n    await selectRole.click();\n    const [userRole] = await page.$x('[role=option]');\n    await userRole.click();\n    const [button] = await page.$x(\"//button[text()='Lets Go']\");\n    await button.click();\n    console.log('Role Selected Successfully');\n    await page.waitForTimeout(10000);\n\n    await page.screenshot({\npath: `Login/Dashboard_${getDateString()}.png`,\nfullPage: true  \n    });\n   \n    await recorder.stop();\n    await page.close();\n    await browser.close();",
+              "err": {
+                "message": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (D:\\Automation\\Unite_Puppeteer\\Login.js)",
+                "estack": "Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \"done()\" is called; if returning a Promise, ensure it resolves. (D:\\Automation\\Unite_Puppeteer\\Login.js)\n    at listOnTimeout (internal/timers.js:557:17)\n    at processTimers (internal/timers.js:500:7)",
+                "diff": null
+              },
+              "uuid": "f9b8a50b-3574-43b7-9f5e-93dfe41a5ed0",
+              "parentUUID": "ed101e43-47ea-4bf7-a4f7-c670c0ac1539",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "f9b8a50b-3574-43b7-9f5e-93dfe41a5ed0"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 2053,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "9.1.3"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.0.1"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.0.1"
+    }
+  }
+}
